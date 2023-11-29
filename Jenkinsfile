@@ -11,7 +11,7 @@ pipeline {
         stage('Deploy Sonarqube') {
             steps {
                 
-                sh '/usr/bin/docker pull sonarqube:latest'
+                sh 'docker pull sonarqube:latest'
                   
                 }
             }
