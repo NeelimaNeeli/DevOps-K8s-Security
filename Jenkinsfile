@@ -10,12 +10,12 @@ pipeline {
         }
         stage('Deploy Sonarqube') {
             steps {
-                scripts {
-                  sh 'docker pull sonarqube:latest'
-                  sh 'docker run -d --name sonarqube -p 9000:9000 sonarqube:latest'
+                
+                sh 'docker pull sonarqube:latest'
+                  
                 }
             }
-        }
+        
     }
   post {
     success {
