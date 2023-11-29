@@ -17,5 +17,13 @@ pipeline {
             }
         }
     }
+  post {
+    success {
+      echo 'Build Success'
+    }
+    failure {
+      echo 'Build Failure'
+    }
   }
+}
 
