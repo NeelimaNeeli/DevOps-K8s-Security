@@ -9,7 +9,7 @@ pipeline {
     }
     stage('publish code') {
       steps {
-        withSonarQubeEnv('admin') {
+        withSonarQubeEnv('sonar') {
                 sh 'mvn clean package sonar:sonar'
               }
       }
