@@ -9,7 +9,7 @@ pipeline {
     }
     stage('publish code') {
       steps {
-        withSonarQubeEnv('Sonartoken') {
+        withSonarQubeEnv('sonarqube') {
                 sh 'mvn clean package sonar:sonar'
               }
       }
