@@ -7,5 +7,13 @@ pipeline {
         sh '/opt/maven/bin/mvn clean package -DskipTest=true'
       }
     }
+    stage('publish code') {
+      steps {
+        withSonarQubeEnv('SonarServer') {
+                sh 'mvn clean package sonar:sonar'
+              }
+      }
+    }
+          
   }
 }
