@@ -10,7 +10,7 @@ pipeline {
     stage('publish code') {
       steps {
         withSonarQubeEnv('sonarqube') {
-                sh "mvn clean verify sonar:sonar \
+                sh "/opt/maven/bin/mvn clean verify sonar:sonar \
                    -Dsonar.projectKey=devops \
                    -Dsonar.projectName='devops' \
                    -Dsonar.host.url=http://172.17.0.2:9000 \
