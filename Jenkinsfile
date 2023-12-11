@@ -9,7 +9,7 @@ pipeline {
     }
     stage('publish code') {
       steps {
-        withSonarQubeEnv(sonarqube) {
+        withSonarQubeEnv() {
                 sh "mvn clean verify sonar:sonar \
                    -Dsonar.projectKey=devops \
                    -Dsonar.projectName='devops' \
