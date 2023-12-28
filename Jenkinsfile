@@ -17,8 +17,7 @@ pipeline {
                    -Dsonar.token=sqp_399c4c54f8a8183b8fb83869afd1bb5fcac612be"
               }
       }
-    }
-    timeout(time: 5, unit: 'MINUTES') {
+      timeout(time: 5, unit: 'MINUTES') {
                 script {
                     def qg = waitForQualityGate()
                     if (qg.status != 'OK') {
@@ -26,6 +25,8 @@ pipeline {
                     }
                 }
             }
+    }
+    
           
   }
 }
