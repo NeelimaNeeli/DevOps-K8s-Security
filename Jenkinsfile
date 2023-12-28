@@ -9,7 +9,7 @@ pipeline {
     }
     stage('publish code') {
       steps {
-        withSonarQubeEnv(installationName: 'sonarqube',credentialsId: 'sonartoken') {
+        withSonarQubeEnv(installationName: 'sonarqube', webhookSecret: 'secret-text') {
                 sh "/opt/maven/bin/mvn clean verify sonar:sonar \
                    -Dsonar.projectKey=devops \
                    -Dsonar.projectName='devops' \
