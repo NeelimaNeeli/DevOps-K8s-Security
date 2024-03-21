@@ -19,9 +19,22 @@ pipeline {
           sh 'docker push neelima640/abc:latest'
         }
       }
+      stage ('Removing existing container') {
+        steps {
+          sh 'docker stop sathvika'
+          sh 'docker rm sathvika'
+          
+        }
+      }
       stage ('Creating Docker Container') {
         steps {
-          sh 'docker run -d --name=thirsty_bell -p 8084:8080 neelima640/abc:latest'
+          sh 'docker run -d p 8084:8080 --name=sathvika - neelima640/abc:latest'
+          
+        }
+      }
+      stage ('Removing existing k8s deployment') {
+        steps {
+          sh 'kubectl delete deploy gs'
           
         }
       }
