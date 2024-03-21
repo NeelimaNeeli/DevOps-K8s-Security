@@ -21,7 +21,8 @@ pipeline {
       }
       stage ('Creating Docker Container') {
         steps {
-          sh 'docker run -d -p 8084:8080 neelima640/abc:latest'
+          sh 'docker run -d --name=thirsty_bell -p 8084:8080 neelima640/abc:latest'
+          
         }
       }
       stage ('Running Container') {
