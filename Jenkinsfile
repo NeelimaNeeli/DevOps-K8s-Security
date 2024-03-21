@@ -20,12 +20,16 @@ pipeline {
         }
       }
       stage ('Removing existing container') {
-        steps {
-          sh 'docker stop sathvika'
-          sh 'docker rm sathvika'
-          
+        when {
+                // Skip this stage if the container 'sathvika' does not exist
+                expression { return sh(script: 'docker ps -a --format "{{.Names}}" | grep -q "sathvika"', returnStatus: true) == 0 }
+            }
+            steps {
+                sh 'docker stop sathvika || true' // Stop the container if it exists, ignore errors if it doesn't
+                sh 'docker rm sathvika || true'   // Remove the container if it exists, ignore errors if it doesn't
+            }
         }
-      }
+      
       stage ('Creating Docker Container') {
         steps {
           sh 'docker run -d p 8084:8080 --name=sathvika - neelima640/abc:latest'
