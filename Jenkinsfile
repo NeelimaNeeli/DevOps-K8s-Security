@@ -8,7 +8,7 @@ pipeline {
     }
       stage ('Building Image') {
         steps {
-          sh 'docker build -t gs:v1 -f /home/neelima/devops/DevOps-K8s-Security/Dockerfile .'
+          sh 'docker build -t abc:latest -f /home/neelima/devops/DevOps-K8s-Security/Dockerfile .'
           
         
         }
