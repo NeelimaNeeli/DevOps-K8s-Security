@@ -8,7 +8,7 @@ pipeline {
     }
       stage ('Building Image') {
         steps {
-          sh 'docker build -t gs:v1 .'
+          sh 'docker build -t gs:v1 -f DevOps-K8s-Security/Dockerfile'
           
         
         }
