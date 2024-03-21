@@ -32,7 +32,7 @@ pipeline {
       
       stage ('Creating Docker Container') {
         steps {
-          sh 'docker run -d -p 8084:8080 --name=sathvika - neelima640/abc:latest'
+          sh 'docker run -d -p 8084:8080 --name=sathvika neelima640/abc:latest'
           
         }
       }
