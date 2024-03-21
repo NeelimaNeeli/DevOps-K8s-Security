@@ -19,6 +19,11 @@ pipeline {
           sh 'docker push neelima640/abc:latest'
         }
       }
+      stage ('Creating Docker Container') {
+        steps {
+          sh 'docker run -d -p 8081:8080 neelima640/abc:latest'
+        }
+      }
         
     }
 }
