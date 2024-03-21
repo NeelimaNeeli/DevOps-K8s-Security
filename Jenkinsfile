@@ -13,6 +13,7 @@ pipeline {
       }
       stage ('Docker Push') {
         steps {
+          sh 'docker login -u neelima640 -p Peacock@2127'
           sh 'docker push abc:latest'
         }
       }
