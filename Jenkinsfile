@@ -24,6 +24,11 @@ pipeline {
           sh 'docker run -d -p 8081:8080 neelima640/abc:latest'
         }
       }
+      stage ('Running Container') {
+        steps {
+          sh 'kubectl run deploy gs --image=neelima640/abc:latest --replicas=5'
+        }
+      }
         
     }
 }
