@@ -42,6 +42,7 @@ pipeline {
           
         }
       }
+      
       stage ('Running Container') {
         steps {
           sh 'kubectl create deploy gs --image=neelima640/abc:latest --replicas=5'
