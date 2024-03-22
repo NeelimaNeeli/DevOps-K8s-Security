@@ -36,12 +36,15 @@ pipeline {
           
         }
       }
-      stage ('Removing existing k8s deployment') {
-        steps {
-          sh 'kubectl delete deploy gs'
-          
+      stage('Removing existing k8s deployment') {
+            when {
+                // Skip this stage if the deployment 'gs' does not exist
+                expression { return sh(script: 'kubectl get deploy gs &> /dev/null', returnStatus: true) == 0 }
+            }
+            steps {
+                sh 'kubectl delete deploy gs'
+            }
         }
-      }
       
       stage ('Running Container') {
         steps {
