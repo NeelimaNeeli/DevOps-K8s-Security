@@ -37,6 +37,7 @@ pipeline {
         }
       }
       stage('Removing existing k8s deployment') {
+        withKubeConfig([credentialsId: 'user1', serverUrl: 'https://api.k8s.my-company.com']) {
             when {
                 // Skip this stage if the deployment 'gs' does not exist
                 expression { return sh(script: 'kubectl get deploy gs &> /dev/null', returnStatus: true) == 0 }
@@ -44,6 +45,7 @@ pipeline {
             steps {
                 sh 'kubectl delete deploy gs'
             }
+          }
         }
       
       stage ('Running Container') {
