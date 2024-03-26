@@ -37,16 +37,21 @@ pipeline {
         }
       }
       stage('Removing existing k8s deployment') {
-        withKubeConfig([credentialsId: 'user1', serverUrl: 'https://api.k8s.my-company.com']) {
-            when {
-                // Skip this stage if the deployment 'gs' does not exist
-                expression { return sh(script: 'kubectl get deploy gs &> /dev/null', returnStatus: true) == 0 }
-            }
             steps {
-                sh 'kubectl delete deploy gs'
+                withKubeConfig([credentialsId: 'minikube']) {
+                    script {
+                        // Skip this stage if the deployment 'gs' does not exist
+                        def deployExists = sh(script: 'kubectl get deploy gs &> /dev/null', returnStatus: true)
+                        if (deployExists == 0) {
+                            sh 'kubectl delete deploy gs'
+                        } else {
+                            echo "Deployment 'gs' does not exist. Skipping deletion."
+                        }
+                    }
+                }
             }
-          }
         }
+    }
       
       stage ('Running Container') {
         steps {
