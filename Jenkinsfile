@@ -39,7 +39,7 @@ pipeline {
       stage('Removing existing k8s deployment') {
             steps {
                 withKubeConfig([credentialsId: 'minikube']) {
-                  sh 'kubectl create deploy gs --image=neelima640/abc:latest --replicas=5 -n sathvi'
+                  sh 'kubectl create -f deploy.yaml'
                 }
             }
         }
