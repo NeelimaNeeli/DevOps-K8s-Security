@@ -38,7 +38,7 @@ pipeline {
       }
       stage('Removing existing k8s deployment') {
             steps {
-                withKubeConfig([credentialsId: 'minikube']) {
+                withKubeConfig([credentialsId: 'minikube', serverUrl: 'https://192.168.49.2:8443']) {
                     script {
                         // Skip this stage if the deployment 'gs' does not exist
                         def deployExists = sh(script: 'kubectl get deploy gs &> /dev/null', returnStatus: true)
