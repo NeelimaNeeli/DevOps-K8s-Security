@@ -38,26 +38,11 @@ pipeline {
       }
       stage('Removing existing k8s deployment') {
             steps {
-                withKubeConfig([credentialsId: 'minikube', serverUrl: 'https://192.168.49.2:8443']) {
-                    script {
-                        // Skip this stage if the deployment 'gs' does not exist
-                        def deployExists = sh(script: 'kubectl get deploy gs &> /dev/null', returnStatus: true)
-                        if (deployExists == 0) {
-                            sh 'kubectl delete deploy gs'
-                        } else {
-                            echo "Deployment 'gs' does not exist. Skipping deletion."
-                        }
-                    }
+                withKubeConfig([credentialsId: 'minikube']) {
+                  sh 'kubectl create deploy gs --image=neelima640/abc:latest --replicas=5 -n sathvi'
                 }
             }
         }
-    
-      
-      stage ('Running Container') {
-        steps {
-          sh 'kubectl create deploy gs --image=neelima640/abc:latest --replicas=5'
-        }
-      }
         
     }
 }
