@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: gs
+  name: gs
+  namespace: sathvi
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: gs
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: gs
+    spec:
+      containers:
+      - image: neelima640/abc:latest
+        name: abc
