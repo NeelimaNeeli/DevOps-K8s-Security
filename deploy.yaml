@@ -21,3 +21,22 @@ spec:
       containers:
       - image: neelima640/abc:latest
         name: abc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2024-03-27T10:41:41Z"
+  name: gssvc
+  namespace: sathvi
+   
+  
+spec:
+  ports:
+    -  port: 8080
+       protocol: TCP
+       targetPort: 8080
+  selector:
+    app: gs
+  
+  type: NodePort
+
