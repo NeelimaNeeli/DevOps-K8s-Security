@@ -38,7 +38,7 @@ pipeline {
       }
       stage('Removing existing k8s deployment') {
             steps {
-                withKubeConfig([credentialsId: 'minikube', serverUrl: "https://192.168.49.2:8443"]) {
+                withKubeConfig([credentialsId: 'minikube', serverUrl: "https://192.168.49.2:8443", configs: "deploy.yaml"]) {
                   sh 'kubectl create -f deploy.yaml'
                 }
             }
