@@ -38,7 +38,7 @@ pipeline {
       }
      stage('Creating k8s deployment') {
        steps {
-        script {
+         script {
             def deploymentCheck = sh(script: 'kubectl get deployment gs -o name', returnStdout: true, returnStatus: true)
             if (deploymentCheck == 0) {
                 // Delete the existing deployment if it exists
@@ -49,8 +49,15 @@ pipeline {
         withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://192.168.0.107:6443']) {
             sh 'kubectl apply -f deploy.yaml'
         }
-    }
-}
+       }
+     }
+     stage('List the services') {
+       steps {
+         withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://192.168.0.107:6443']) {
+           sh 'kubectl get svc -n sathvi'
+         }
+       }
+     }
 
       
         
