@@ -36,13 +36,23 @@ pipeline {
           
         }
       }
-      stage('Creating k8s deployment') {
-            steps {
-                withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://192.168.0.107:6443']) {
-                  sh 'kubectl create -f deploy.yaml'
-                }
+     stage('Creating k8s deployment') {
+       steps {
+        script {
+            def deploymentCheck = sh(script: 'kubectl get deployment sathvika-deployment -o name', returnStdout: true, returnStatus: true)
+            if (deploymentCheck == 0) {
+                // Delete the existing deployment if it exists
+                sh 'kubectl delete deployment sathvika-deployment'
             }
         }
+        // Apply the new deployment
+        withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://192.168.0.107:6443']) {
+            sh 'kubectl apply -f deploy.yaml'
+        }
+    }
+}
+
+      
         
     }
 }
