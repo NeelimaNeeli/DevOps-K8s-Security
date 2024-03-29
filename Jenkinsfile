@@ -39,10 +39,10 @@ pipeline {
      stage('Creating k8s deployment') {
        steps {
         script {
-            def deploymentCheck = sh(script: 'kubectl get deployment sathvika-deployment -o name', returnStdout: true, returnStatus: true)
+            def deploymentCheck = sh(script: 'kubectl get deployment gs -o name', returnStdout: true, returnStatus: true)
             if (deploymentCheck == 0) {
                 // Delete the existing deployment if it exists
-                sh 'kubectl delete deployment sathvika-deployment'
+                sh 'kubectl delete deployment gs'
             }
         }
         // Apply the new deployment
