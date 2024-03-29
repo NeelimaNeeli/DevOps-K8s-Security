@@ -38,7 +38,7 @@ pipeline {
       }
       stage('Creating k8s deployment') {
             steps {
-                withKubeConfig([credentialsId: 'minikube', serverUrl: 'https://192.168.0.107:6443']) {
+                withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://192.168.0.107:6443']) {
                   sh 'kubectl create -f deploy.yaml'
                 }
             }
