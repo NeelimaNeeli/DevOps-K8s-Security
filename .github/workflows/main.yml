@@ -5,7 +5,7 @@ on:
 
 jobs:
   clone:
-    runs-on: peacock
+    runs-on: self-hosted
     steps:
     - name: Checkout this repository
       uses: actions/checkout@v2
