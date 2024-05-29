@@ -1,0 +1,15 @@
+name: cicd-pipeline
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  clone:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout this repository
+      uses: actions/checkout@v2
+    - name: Clone-source
+      run: |
+        git clone https://github.com/NeelimaNeeli/DevOps-K8s-Security.git
+    
