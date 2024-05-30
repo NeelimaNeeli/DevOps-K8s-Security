@@ -14,7 +14,7 @@ jobs:
         git clone https://github.com/NeelimaNeeli/DevOps-K8s-Security.git
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: clone
     steps:
     - name: Set up JDK 11
