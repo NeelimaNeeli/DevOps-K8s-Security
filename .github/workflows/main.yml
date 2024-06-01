@@ -37,7 +37,7 @@ jobs:
 
   accessing_tomcat:
     runs-on: self-hosted
-    needs: build
+    needs: code_analysis
     steps:
     - name: Checkout this repository
       uses: actions/checkout@v2
