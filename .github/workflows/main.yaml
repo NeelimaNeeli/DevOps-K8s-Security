@@ -35,7 +35,7 @@ jobs:
     - name: Checkout this repository
       uses: actions/checkout@v2 
     - name: Build and analyze
-      working-directory: DevOps-K8s-Security  # Enter the directory where your Maven project is located
+      #working-directory: DevOps-K8s-Security  # Enter the directory where your Maven project is located
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
