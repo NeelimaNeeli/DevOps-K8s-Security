@@ -15,7 +15,7 @@ jobs:
 
   build:
     runs-on: self-hosted
-    needs: clone
+    needs: code_analysis
     steps:
     - name: Checkout this repository
       uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
 
   code_analysis:
     runs-on: self-hosted
-    needs: build
+    needs: clone
     steps:
     - name: Checkout this repository
       uses: actions/checkout@v2 
