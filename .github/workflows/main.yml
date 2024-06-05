@@ -41,12 +41,14 @@ jobs:
     steps:
     - name: Checkout this repository
       uses: actions/checkout@v2
+    - name: Download build artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: target
+        path: DevOps-K8s-Security/target
     - name: Build Docker image
+      working-directory: DevOps-K8s-Security  # Ensure the correct directory
       run: docker build -t myapp .
-
-    - name: Run Docker container
-      run: docker run -d -p 8888:8888 myapp
-
 
 
 
