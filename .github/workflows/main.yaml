@@ -51,5 +51,8 @@ jobs:
       run: ls -la DevOps-K8s-Security/target
     
     - name: Build Docker image
-      #working-directory: DevOps-K8s-Security  # Ensure the correct directory
-      run: docker build -t myapp .
+      run: docker build -t myapp .  # Implicitly uses current directory (change to desired path if needed)
+      working-directory: ${{ github.workspace }}/DevOps-K8s-Security/target  # Assuming target is uploaded to this location
+
+    - name: Check target directory (after build - optional for debugging)
+      run: ls -la DevOps-K8s-Security/target 
