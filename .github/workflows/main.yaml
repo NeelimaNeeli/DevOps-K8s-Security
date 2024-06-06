@@ -50,4 +50,4 @@ jobs:
     
     - name: Build Docker image
       #working-directory: DevOps-K8s-Security  # Ensure the correct directory
-      run: docker build -t myapp .
+      run: docker build -t myapp 
