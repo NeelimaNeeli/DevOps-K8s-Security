@@ -1,0 +1,22 @@
+name: java-pipeline
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  clone:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout this repository
+      uses: actions/checkout@v2
+    - name: Clone-source
+      run: |
+        git clone https://github.com/NeelimaNeeli/spring-petclinic.git
+  build:
+    runs-on: self-hosted
+    needs: clone
+    steps:
+    - name: Checkout this repository
+      uses: actions/checkout@v2
+    - name: Build with Maven
+      run: 'mvn clean install'
