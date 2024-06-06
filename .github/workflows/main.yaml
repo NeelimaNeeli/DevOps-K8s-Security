@@ -47,6 +47,8 @@ jobs:
     steps:
     - name: Checkout this repository
       uses: actions/checkout@v2
+    - name: Check target directory (before build)
+      run: ls -la DevOps-K8s-Security/target
     
     - name: Build Docker image
       #working-directory: DevOps-K8s-Security  # Ensure the correct directory
